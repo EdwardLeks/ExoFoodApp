@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap-grid.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+		integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+	<title>ExoFood</title>
+</head>
+
+<body>
+	<div class="app">
+		<!-- Food lists -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4 food-container" id="food-expired">
+					<h2 class="food-container-type">Expired</h2>
+
+					<div class="food-group" id="food-group-expired">
+						<!-- <div class="food-block" id="">
+							<h2 class="food-name" id="food-name">Name</h2>
+							<p class="close" id="close"><i class="fas fa-times"></i></p>
+							<p class="p" id="days-untill">Days Expired</p>
+							<p class="food-date p" id="food-date">Date</p>
+						</div> -->
+					</div>
+				</div>
+
+				<div class="col-md-4 food-container" id="food-soon">
+					<h2 class="food-container-type">Soon</h2>
+					<div class="food-group" id="food-group-soon"></div>
+				</div>
+
+				<div class="col-md-4 food-container" id="food-list">
+					<h2 class="food-container-type">List</h2>
+					<div class="food-group" id="food-group-list"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Sidebar -->
+		<div id="sidebar" class="sidebar">
+			<a href="javascript:void(0)" class="closebtn">×</a>
+			<a href="#">Settings</a>
+			<a href="#">Help</a>
+			<!-- Account Info Block -->
+			<div class="account-block">
+				<div class="account-pic" id="account"></div>
+				<div class="account-info">
+					<h4 class="account-name">Name</h4>
+					<p class="account-premium">Basic</p>
+				</div>
+				<div class="account-logout">
+					<i class="fas fa-sign-out-alt" id="logout"></i>
+				</div>
+			</div>
+			<!-- Account Info Panel -->
+			<div class="account-info-panel">
+				<h4>Account Info</h4>
+				<h5>Name</h5>
+				<p class="account-info-name"></p>
+				<h5>Email</h5>
+				<p class="account-info-email"></p>
+			</div>
+			<!-- Account Register Block -->
+			<div class="account-register">
+				<div>
+					<a href="#" class="login" id="login">Log In</a>
+				</div>
+				<div>
+					<a href="#" class="signup" id="signup">Sign Up</a>
+				</div>
+			</div>
+		</div>
+		<!-- Log In Modal -->
+		<div id="login-modal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2 class="heading">Login</h2>
+				<form action="" id="login-form" class="form">
+					<label for="login-email">Email address</label>
+					<input type="email" id="login-email" required />
+
+					<label for="login-password">Password</label>
+					<input type="password" id="login-password" required />
+
+					<button class="button">Log In</button>
+					<p>Dont have an account, <a class="no-account" href="#">Sign Up</a></p>
+				</form>
+			</div>
+		</div>
+		<!-- Sign Up Modal -->
+		<div id="signup-modal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2 class="heading">Create Account</h2>
+				<form action="" id="signup-form" class="form">
+					<label for="signup-name">Name</label>
+					<input type="text" id="signup-name" required />
+
+					<label for="signup-email">Email address</label>
+					<input type="email" id="signup-email" required />
+
+					<label for="signup-password">Choose password</label>
+					<input type="password" id="signup-password" required />
+
+					<button class="button">Sign Up</button>
+					<p>Already have an account, <a class="has-account" href="#">Log In</a></p>
+				</form>
+			</div>
+		</div>
+		<!-- Food Adding Screen -->
+		<div class="food-add-screen">
+			<span class="close">&times;</span>
+				<div class="add-food-section">
+					<h2 class="add-food-heading">Add Food</h2>
+					<input type="text" id="food-name-input" class="food-name-input" placeholder="Food" value="">
+
+					<div class="wraper">
+						<h3>Date</h3>
+						<p>Set Date</p>
+						<input type="date" id="food-date-input" class="food-input">
+					</div>
+
+					<div class="wraper">
+						<h3>Notifications</h3>
+						<p>Set Notifications</p>
+						<input type="date" id="food-ntfc-input" class="food-input">
+					</div>
+				</div>
+		</div>
+
+		<!-- Menu Bar On Bottom -->
+		<div class="menu-bar">
+			<div class="menu">
+				<i class="fas fa-bars"></i>
+			</div>
+			<button class="add-data" id="add-data"><i class="fas fa-search"></i></button>
+			<button class="add-type" id="add-type">+</button>
+			<button class="add-image" id="add-image"><i class="fas fa-camera"></i></button>
+			<button class="add" id="add" onclick="openBtn(), addFood(checkOpen)"><span>+</span></button>
+		</div>
+	</div>
+	<!-- Loading Scripts -->
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+			https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyAW8hlhbgmuPoqh2y5XpCuvQtFnHiHvIGQ",
+			authDomain: "exofoodapp.firebaseapp.com",
+			databaseURL: "https://exofoodapp.firebaseio.com",
+			projectId: "exofoodapp",
+			storageBucket: "exofoodapp.appspot.com",
+			messagingSenderId: "97489477241",
+			appId: "1:97489477241:web:1c338127c30adcf68b3ea8",
+			measurementId: "G-JQQ0Z4D8P5"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+
+		const auth = firebase.auth()
+		const db = firebase.firestore()
+	</script>
+
+	<script src="scripts/auth.js"></script>
+	<script src="scripts/script.js"></script>
+</body>
+
+</html>

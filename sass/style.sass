@@ -1,0 +1,398 @@
+@import vars.sass
+
+body
+	background-color: $light
+	font-family: $font
+	margin: 0
+	padding: 0
+
+.app
+	min-height: 100vh	
+	position: relative
+
+//Food Container
+.food-container-type
+	padding-left: 30px
+
+.food-group
+	overflow-x: hidden
+	max-height: 90vh
+
+.food-group::-webkit-scrollbar
+	width: 6px
+
+.food-group::-webkit-scrollbar-thumb
+	background-color: lightgrey
+	border-radius: 10px
+
+// Food Block
+.food-block
+	width: 90%
+	height: 110px
+	background: linear-gradient(to right, #62CD4E, #00b09b)
+	margin: 0 auto
+	margin-bottom: 20px
+	border-radius: 20px
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+	
+	.food-name
+		display: inline-block
+		margin: 0
+		margin-left: 23px
+		color: #fff
+		width: 45%
+		padding-top: 15px
+		color: #fff
+
+	.p
+		display: inline-block
+		margin-left: 23px
+		margin-top: 10px
+		color: #fff
+		width: 43%
+
+	.food-date
+		text-align: right
+
+	.close
+		display: inline-block
+		margin-top: 0
+		padding-top: 15px
+		color: #fff
+		width: 45%
+		text-align: right
+		i
+			cursor: pointer
+
+// Menu Bar
+.menu-bar
+	position: fixed
+	bottom: 0
+	left: 0
+	width: 100%
+	height: 50px
+	box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25)
+	background-color: $light
+	z-index: 5
+	// Menu
+	.menu
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		left: 30px
+		cursor: pointer
+	// Buttons
+	.add
+		width: 50px
+		height: 50px
+		background: linear-gradient(to right, #62CD4E, #00b09b)
+		color: #fff
+		font-size: 30px
+		margin-top: -20px
+		border: none
+		border-radius: 50%
+		transition: .25s ease all
+		position: absolute
+		left: 50%
+		transform: translateX(-50%)
+		outline: none
+		cursor: pointer
+		box-shadow: $shadow
+		span
+			transition: .25s ease all
+			display: inline-block
+		&-data
+			@extend .add
+			width: 40px
+			height: 40px
+			font-size: 20px
+			display: flex
+			align-items: center
+			justify-content: center
+		&-type
+			@extend .add
+			width: 40px
+			height: 40px
+		&-image
+			@extend .add
+			width: 40px
+			height: 40px
+			font-size: 20px
+			display: flex
+			align-items: center
+			justify-content: center
+
+// Buton Active
+.active-bar
+	.add
+		span
+			transform: rotate(45deg)
+		&-data
+			margin-top: -50px
+			margin-left: -50px
+		&-type
+			margin-top: -70px
+		&-image
+			margin-top: -50px
+			margin-left: 50px
+
+// Sidebar
+.sidebar 
+	height: 100%
+	width: 0
+	position: fixed
+	z-index: 10
+	top: 0
+	left: 0
+	background-color: $light
+	overflow-x: hidden
+	transition: 0.5s
+	padding-top: 60px
+	white-space: nowrap
+	box-shadow: inset -4px 0px 15px 0px rgba(0, 0, 0, 0.25)
+	a 
+		padding: 8px 8px 8px 32px
+		text-decoration: none
+		font-size: 25px
+		color: $text
+		display: block
+		transition: 0.3s
+	.closebtn 
+		position: absolute
+		top: 0
+		right: 25px
+		font-size: 36px
+		margin-left: 50px
+	.openbtn 
+		font-size: 20px
+		cursor: pointer
+		background-color: #111
+		color: white
+		padding: 10px 15px
+		border: none
+	.openbtn:hover 
+		background-color: #444
+	#main 
+		transition: margin-left .5s
+		padding: 16px
+	// Account Block
+	.account-block
+		width: 100%
+		height: 75px
+		background-color: #fff
+		position: absolute
+		left: 0
+		bottom: 0
+		display: flex
+		align-items: center
+		justify-content: space-between
+		padding: 0 20px
+		background-color: lightgrey
+		display: none
+		transition: $mt
+		.account-pic
+			width: 50px
+			height: 50px
+			border-radius: 50%
+			background-color: grey
+			cursor: pointer
+		.active-pic
+			width: 60px
+			height: 60px
+			background-color: darkgrey
+		.account-info
+			margin-left: -40px
+			.account-name
+				margin: 0
+			.account-premium
+				margin: 0
+		.account-logout
+			cursor: pointer
+	.account-block-active
+		bottom: 200px
+	// Account Register Block
+	.account-register
+		@extend .account-block
+		display: flex
+		justify-content: space-around
+		.login
+			font-size: 16px
+			padding: 0
+			text-align: center
+		.signup
+			font-size: 16px
+			padding: 0
+			text-align: center
+	// Account Info Panel
+	.account-info-panel
+		width: 100%
+		height: 200px
+		padding: 0 18px
+		background-color: white
+		transform-origin: 0 100%
+		transform: scaleY(0)
+		transition: $mt
+		position: absolute
+		bottom: 0
+		h4
+			margin-bottom: 12px
+		h5
+			margin: 0
+			margin-bottom: 5px
+		p
+			margin: 0
+			margin-bottom: 10px
+	.active-panel
+		transform: scaleY(1)
+
+.modal
+	display: none
+	position: fixed
+	z-index: 15
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+	overflow: auto
+	background-color: rgba(0,0,0,0.4)
+	// Modal Content
+	.modal-content 
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		background-color: #fefefe
+		padding: 20px 40px
+		min-width: 400px
+		min-height: 600px
+		border-radius: 20px
+		box-shadow: $shadow
+		// The Close Button 
+		.close
+			color: #aaaaaa
+			float: right
+			font-size: 28px
+			font-weight: bold
+			&:hover
+				color: #000
+				text-decoration: none
+				cursor: pointer
+		.heading
+			text-align: center
+		.form
+			margin-top: 70px
+			input
+				display: block
+				width: 100%
+				height: 30px
+				border: none
+				font-size: 20px
+				color: gery
+				border-bottom: 3px solid lightgrey
+				margin-top: 5px
+				margin-bottom: 10px
+				outline: none
+				&:focus
+					border-bottom: 3px solid
+					border-image-source: $accent
+					border-image-slice: 1
+			.button
+				width: 250px
+				height: 50px
+				border: none
+				border-radius: 20px
+				background: $accent
+				color: $light
+				box-shadow: $shadow
+				font-size: 20px
+				background-size: 150%
+				transition: $mt
+				outline: none
+				margin-top: 200px
+				margin-left: 50%
+				transform: translateX(-50%)
+				&:hover
+					cursor: pointer
+					background-position: right
+			p
+				text-align: center
+				margin-top: 20px
+
+// Food Adding Screen
+.food-add-screen
+	width: 100%
+	height: 100%
+	z-index: 3
+	position: fixed
+	top: 0
+	left: 0
+	background-color: #fff
+	display: none
+	.close
+		color: #aaaaaa
+		float: right
+		font-size: 28px
+		font-weight: bold
+		margin-right: 30px
+		margin-top: 20px
+		&:hover
+			color: #000
+			text-decoration: none
+			cursor: pointer
+	.add-food-section
+		width: 50%
+		height: 100%
+		margin: auto
+		padding-top: 30px
+		.add-food-heading
+			margin: 0
+			margin-left: 30px
+		input
+			display: block
+			outline: none !important
+		input[type="date"]
+			&::-webkit-inner-spin-button
+				display: none
+			&::-webkit-calendar-picker-indicator 
+				margin-right: 20px
+		.food-name-input
+			margin-top: 50px
+			width: 90%
+			height: 50px
+			font-size: 30px
+			margin-left: 50%
+			transform: translateX(-50%)
+			border: none
+			border-bottom: 2px solid grey
+		.wraper
+			width: 90%
+			max-height: auto
+			margin-left: 50%
+			transform: translateX(-50%)
+			margin-top: 20px
+			border-radius: 20px
+			background: $accent
+			box-shadow: $shadow
+			color: #fff
+			padding: 10px 20px
+			cursor: pointer
+			h3
+				margin: 0
+			p
+				margin: 0
+				margin-top: 5px
+		.food-input
+			width: 100%
+			max-height: 0
+			margin-top: 0px
+			border: none
+			border-radius: 20px
+			background: $accent
+			font-size: 18px
+			display: block
+			color: #fff
+			transition: $mt
+		.active-input
+			input
+				max-height: 75px !important
+				margin-top: 10px
